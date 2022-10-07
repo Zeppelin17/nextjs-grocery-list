@@ -16,7 +16,7 @@ const InputText = ({ label, name, placeholder, onChange, value }) => {
         value={value}
         placeholder={placeholder}
         onChange={onChange}
-        className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg outline-blue-500 block w-full p-2.5 placeholder-gray-400"
+        className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded outline-blue-500 block w-full p-2.5 placeholder-gray-400"
       />
     </>
   )
