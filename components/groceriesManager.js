@@ -29,6 +29,15 @@ const GroceriesManager = () => {
     setInputValue("")
   }
 
+  const handleDeleteItem = (item) => {
+    const newGroceryList = groceryList.filter((listItem) => listItem != item)
+    setGroceryList(newGroceryList)
+
+    setMessageType("ok")
+    const msg = `Eliminado ${item} de la lista`
+    setResultMessage(msg)
+  }
+
   return (
     <>
       <div className="flex flex-col space-y-8 md:grid md:items-start md:gap-8 md:space-y-0 md:grid-cols-2 lg:grid-cols-3">
@@ -46,7 +55,10 @@ const GroceriesManager = () => {
         {groceryList.length > 0 && (
           <section className="p-4 border-2 border-blue-500 rounded shadow-md md:col-span-1 lg:col-span-2">
             <Heading2>Tu lista actual</Heading2>
-            <GroceryList groceries={groceryList} />
+            <GroceryList
+              groceries={groceryList}
+              handleDeleteItem={handleDeleteItem}
+            />
           </section>
         )}
       </div>
