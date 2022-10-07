@@ -4,7 +4,7 @@ import GroceriesManager from "../components/groceriesManager"
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto p-4">
       <Head>
         <title>Grocery list app</title>
         <meta name="description" content="Grocery list app with NextJS" />
