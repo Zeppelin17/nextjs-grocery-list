@@ -1,10 +1,14 @@
-const GroceryList = ({ groceries }) => {
+import GroceryListItem from "./groceryListItem"
+
+const GroceryList = ({ groceries, handleDeleteItem }) => {
   return (
     <ul>
       {groceries.map((item) => (
-        <li key={item} className="p-2 mb-2 bg-blue-50 text-blue-500 rounded">
-          {item}
-        </li>
+        <GroceryListItem
+          key={item}
+          item={item}
+          handleDeleteItem={handleDeleteItem}
+        />
       ))}
     </ul>
   )
