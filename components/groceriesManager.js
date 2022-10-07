@@ -31,8 +31,8 @@ const GroceriesManager = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-8 md:grid-cols-3">
-        <section className="p-4 border-2 border-blue-500 rounded shadow-md md:col-span-1">
+      <div className="flex flex-col space-y-8 md:grid md:items-start md:gap-8 md:space-y-0 md:grid-cols-2 lg:grid-cols-3">
+        <section className="p-4 border-2 border-blue-500 rounded shadow-md md:col-span-1 lg:col-span-1">
           <Heading2>Añade elementos a la lista</Heading2>
           <AddItemForm
             handleSubmit={handleSubmit}
@@ -44,7 +44,7 @@ const GroceriesManager = () => {
           </ResultMessage>
         </section>
         {groceryList.length > 0 && (
-          <section className="p-4 border-2 border-blue-500 rounded shadow-md md:col-span-2">
+          <section className="p-4 border-2 border-blue-500 rounded shadow-md md:col-span-1 lg:col-span-2">
             <Heading2>Tu lista actual</Heading2>
             <GroceryList groceries={groceryList} />
           </section>
