@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import GroceryList from "./GroceryList"
 import Heading2 from "./heading2"
 import AddItemForm from "./addItemForm"
 import ResultMessage from "./resultMessage"
+import { getLocalStorageData, setLocalStorageData } from "../apis/localStorage"
 
 const GroceriesManager = () => {
   const [inputValue, setInputValue] = useState("")
@@ -10,12 +11,16 @@ const GroceriesManager = () => {
   const [resultMessage, setResultMessage] = useState("")
   const [messageType, setMessageType] = useState("ok")
 
+  useEffect(() => {
+    setGroceryList(getLocalStorageData())
+  }, [])
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
     let msg = ""
     let newGroceryList = [...groceryList]
-    const itemExist = newGroceryList.find((item) => item === inputValue)
+    const itemExist = newGroceryList.find((item) => item.name === inputValue)
     if (itemExist) {
       setMessageType("error")
       msg = `¡Ya hay ${inputValue} en la lista!`
@@ -23,8 +28,9 @@ const GroceriesManager = () => {
       setMessageType("ok")
       msg = `Añadido ${inputValue} en la lista`
 
-      newGroceryList.push(inputValue)
+      newGroceryList.push({ name: inputValue, done: false })
       setGroceryList(newGroceryList)
+      setLocalStorageData(newGroceryList)
     }
     setResultMessage(msg)
     setInputValue("")
@@ -33,15 +39,27 @@ const GroceriesManager = () => {
   const handleClearList = (e) => {
     e.preventDefault()
     setGroceryList([])
+    setLocalStorageData([])
   }
 
   const handleDeleteItem = (item) => {
-    const newGroceryList = groceryList.filter((listItem) => listItem != item)
+    const newGroceryList = groceryList.filter(
+      (listItem) => listItem.name != item.name
+    )
     setGroceryList(newGroceryList)
+    setLocalStorageData(newGroceryList)
 
     setMessageType("ok")
     const msg = `Eliminado ${item} de la lista`
     setResultMessage(msg)
+  }
+
+  const handleToggleItem = (item) => {
+    const newItem = groceryList.find((listItem) => listItem.name === item.name)
+    newItem.done = !newItem.done
+    const newGroceryList = [...groceryList]
+    setGroceryList(newGroceryList)
+    setLocalStorageData(newGroceryList)
   }
 
   return (
@@ -65,6 +83,7 @@ const GroceriesManager = () => {
             <GroceryList
               groceries={groceryList}
               handleDeleteItem={handleDeleteItem}
+              handleToggleItem={handleToggleItem}
             />
           </section>
         )}

@@ -1,8 +1,8 @@
 import { useState } from "react"
 import Icon from "./icon"
 
-const GroceryListItem = ({ item, handleDeleteItem }) => {
-  const [itemDone, setItemDone] = useState(false)
+const GroceryListItem = ({ item, handleDeleteItem, handleToggleItem }) => {
+  const [itemDone, setItemDone] = useState(item.done)
   const [itemHover, setItemHover] = useState(false)
 
   let doneStyle = itemDone
@@ -19,6 +19,7 @@ const GroceryListItem = ({ item, handleDeleteItem }) => {
   const handleCheck = () => {
     const newItemDone = !itemDone
     setItemDone(newItemDone)
+    handleToggleItem(item)
   }
 
   const deleteItem = () => {
@@ -32,7 +33,7 @@ const GroceryListItem = ({ item, handleDeleteItem }) => {
       onTouchStart={toggleItemHover}
       className={`flex justify-between p-2 mb-2 text-blue-500 rounded border ${hoverStyle} ${doneStyle}`}
     >
-      <span>{item}</span>
+      <span>{item.name}</span>
       {itemActions && (
         <span className="flex space-x-4">
           <Icon icon="check" onClick={handleCheck} />{" "}
