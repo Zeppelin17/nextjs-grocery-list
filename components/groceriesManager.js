@@ -12,6 +12,7 @@ const GroceriesManager = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
     let msg = ""
     let newGroceryList = [...groceryList]
     const itemExist = newGroceryList.find((item) => item === inputValue)
@@ -27,6 +28,11 @@ const GroceriesManager = () => {
     }
     setResultMessage(msg)
     setInputValue("")
+  }
+
+  const handleClearList = (e) => {
+    e.preventDefault()
+    setGroceryList([])
   }
 
   const handleDeleteItem = (item) => {
@@ -45,6 +51,7 @@ const GroceriesManager = () => {
           <Heading2>Añade elementos a la lista</Heading2>
           <AddItemForm
             handleSubmit={handleSubmit}
+            handleClearList={handleClearList}
             inputValue={inputValue}
             setInputValue={setInputValue}
           />

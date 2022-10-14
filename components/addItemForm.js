@@ -1,7 +1,12 @@
 import InputText from "./inputText"
 import Button from "./button"
 
-const AddItemForm = ({ handleSubmit, inputValue, setInputValue }) => {
+const AddItemForm = ({
+  handleSubmit,
+  handleClearList,
+  inputValue,
+  setInputValue,
+}) => {
   const handleInputChange = (e) => {
     setInputValue(e.target.value)
   }
@@ -15,7 +20,12 @@ const AddItemForm = ({ handleSubmit, inputValue, setInputValue }) => {
         onChange={handleInputChange}
         value={inputValue}
       />
-      <Button handleClick={handleSubmit}>Añadir</Button>
+      <span className="flex flex-col">
+        <Button handleClick={handleSubmit}>Añadir</Button>
+        <Button handleClick={handleClearList} btnType="secondary">
+          Limpiar Lista
+        </Button>
+      </span>
     </form>
   )
 }
