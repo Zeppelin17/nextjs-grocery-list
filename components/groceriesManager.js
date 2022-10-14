@@ -50,7 +50,7 @@ const GroceriesManager = () => {
     setLocalStorageData(newGroceryList)
 
     setMessageType("ok")
-    const msg = `Eliminado ${item} de la lista`
+    const msg = `Eliminado ${item.name} de la lista`
     setResultMessage(msg)
   }
 
@@ -60,6 +60,11 @@ const GroceriesManager = () => {
     const newGroceryList = [...groceryList]
     setGroceryList(newGroceryList)
     setLocalStorageData(newGroceryList)
+
+    setMessageType("ok")
+    const action = newItem.done ? "Tachado" : "Destachado"
+    const msg = `${action} ${newItem.name} de la lista`
+    setResultMessage(msg)
   }
 
   return (
