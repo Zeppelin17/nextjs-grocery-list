@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import GroceryList from "./GroceryList"
+import GroceryList from "./groceryList"
 import Heading2 from "./heading2"
 import AddItemForm from "./addItemForm"
 import ResultMessage from "./resultMessage"
