@@ -30,7 +30,7 @@ const GroceryListItem = ({ item, handleDeleteItem, handleToggleItem }) => {
     <li
       onMouseEnter={toggleItemHover}
       onMouseLeave={toggleItemHover}
-      onTouchStart={toggleItemHover}
+      onTouchStart={handleCheck}
       className={`flex justify-between p-2 mb-2 text-blue-500 rounded border ${hoverStyle} ${doneStyle}`}
     >
       <span>{item.name}</span>
