@@ -5,7 +5,9 @@ const GroceryListItem = ({ item, handleDeleteItem }) => {
   const [itemDone, setItemDone] = useState(false)
   const [itemHover, setItemHover] = useState(false)
 
-  let doneStyle = itemDone ? "line-through" : ""
+  let doneStyle = itemDone
+    ? "line-through border-blue-100 bg-gray-50"
+    : "border-blue-500"
   let hoverStyle = itemHover ? "bg-blue-100" : "bg-blue-50"
   let itemActions = itemHover ? true : false
 
@@ -28,7 +30,7 @@ const GroceryListItem = ({ item, handleDeleteItem }) => {
       onMouseEnter={toggleItemHover}
       onMouseLeave={toggleItemHover}
       onTouchStart={toggleItemHover}
-      className={`flex justify-between p-2 mb-2 text-blue-500 rounded ${hoverStyle} ${doneStyle}`}
+      className={`flex justify-between p-2 mb-2 text-blue-500 rounded border ${hoverStyle} ${doneStyle}`}
     >
       <span>{item}</span>
       {itemActions && (
